@@ -24,23 +24,27 @@ class MainActivity : AppCompatActivity() {
      */
 
     private fun rollDice() {
-        // Create new Dice object with 6 sides and roll it
+        // Crea un dado de 6 caras
         val dice = Dice(6)
-        val diceRoll = dice.roll()
 
-        // Find the ImageView in the layout
-        val diceImage: ImageView = findViewById(R.id.imageView)
+        //Lanza el dado
+        var diceRoll = dice.roll()
 
-        /*when (diceRoll) {
-            1 -> diceImage.setImageResource(R.drawable.dice_1)
-            2 -> diceImage.setImageResource(R.drawable.dice_2)
-            3 -> diceImage.setImageResource(R.drawable.dice_3)
-            4 -> diceImage.setImageResource(R.drawable.dice_4)
-            5 -> diceImage.setImageResource(R.drawable.dice_5)
-            6 -> diceImage.setImageResource(R.drawable.dice_6)
-        }*/
+        // Busca el ID de ImageView a utilizar
+        var diceImage: ImageView = findViewById(R.id.imageView)
+        //Llama a función para asignar imagen
+        changeDrawableResource(diceRoll,diceImage)
 
-        // Determine which drawable resource ID to use based on the dice roll
+        // Vuelve a lanzar el dado
+        diceRoll = dice.roll()
+        //Busca el ID de la segunda ImageView
+        diceImage = findViewById(R.id.imageView2)
+        //Asigna la imagen correspondiente
+        changeDrawableResource(diceRoll,diceImage)
+    }
+
+    //Determina imagen a usar según diceRoll y la asigna a view diceImage
+    private fun changeDrawableResource(diceRoll: Int, diceImage: ImageView) {
         val drawableResource = when (diceRoll) {
 
             1 -> R.drawable.dice_1
